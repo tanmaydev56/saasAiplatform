@@ -12,7 +12,7 @@ export default function ResetPasswordForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-     redirectTo: `https://saas-aiplatform-mshgc573q-tanmaydev56s-projects.vercel.app/change-password?confirmedPassword=true`,
+     redirectTo: `https://saas-aiplatform-beta.vercel.app/change-password?confirmedPassword=true`,
     });
     if (error) toast.error(error.message);
     else {
