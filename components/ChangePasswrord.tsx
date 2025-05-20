@@ -15,7 +15,7 @@ const confirmed = searchParams.get("confirmedPassword");
 
 useEffect(() => {
   if (confirmed) {
-    toast.success("Password changed successfully!, Please log in.");
+    toast.success("confirmation Done Successfully!,Please Change your password");
   }
 }, [confirmed]);
 
@@ -25,7 +25,7 @@ useEffect(() => {
     if (error) setError(error.message);
     else {
       setSuccess(true);
-      // toast.success("Password changed successfully!");
+  
       setTimeout(() => router.push("/sign-in"), 2000);
     }
   };
@@ -49,7 +49,7 @@ useEffect(() => {
           Update Password
         </button>
         {error && <p className="text-red-500 text-sm">{toast.error(error)}</p>}
-        {success && <p className="text-green-600 text-sm">{toast.success("Password changed successfully!")}</p>}
+        {success && <p className="text-green-600 text-sm">{toast.success("Password changed successfully! Redirecting to sign in page...")}</p>}
       </form>
     </div>
   );

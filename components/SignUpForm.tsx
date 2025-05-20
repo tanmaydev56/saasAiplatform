@@ -28,7 +28,7 @@ export default function SignupForm() {
       email,
       password,
       options: {
-        emailRedirectTo: `https://saas-aiplatform-beta.vercel.app/sign-in?confirmed=true`,
+        emailRedirectTo: 'https://saas-aiplatform-beta.vercel.app/sign-in?confirmed=true',
       },
     });
     console.log(data, error);
