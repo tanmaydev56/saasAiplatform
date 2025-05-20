@@ -46,7 +46,7 @@ useEffect(() => {
     // 🔁 Wait for session to settle before redirecting
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    router.push("/");
+    router.push("/dasboard");
   }
 };
 
