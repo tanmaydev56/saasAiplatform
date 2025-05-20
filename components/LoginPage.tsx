@@ -23,27 +23,33 @@ useEffect(() => {
   }
 }, [confirmed]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setIsLoading(true);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError(null);
+  setIsLoading(true);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-      
-    });
-    if(data.user){
-      toast.success("Logged in successfully");
-      router.push("/");
-    }
-    console.log(data, error);
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-    if (error) setError(error.message);
+  setIsLoading(false);
 
-    setIsLoading(false);
+  if (error) {
+    setError(error.message);
+    return;
+  }
 
-  };
+  if (data.user) {
+    toast.success("Logged in successfully");
+
+    // 🔁 Wait for session to settle before redirecting
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    router.push("/");
+  }
+};
+
 
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({

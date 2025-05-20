@@ -1,15 +1,14 @@
-import Loader from '@/components/Loader'
-import LoginForm from '@/components/LoginPage'
-import React, { Suspense } from 'react'
+// app/login/page.tsx
 
-const page = () => {
+import LoginForm from '@/components/LoginPage';
+import Loader from '@/components/Loader';
+import { Suspense } from 'react';
+
+export default  function Page() {
+
   return (
-    <div>
-      <Suspense fallback={<Loader/>}>
-      <LoginForm/>
-      </Suspense>
-    </div>
-  )
+    <Suspense fallback={<div className="flex justify-center items-center h-screen w-full"><Loader /></div>}>
+      <LoginForm />
+    </Suspense>
+  );
 }
-
-export default page

@@ -2,13 +2,19 @@ import React from 'react';
 
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-white">
-      <div className="relative w-20 h-20">
-        <div className="absolute inset-0 rounded-full border-4 border-t-blue-500 border-r-transparent animate-spin"></div>
-        <div className="absolute inset-2 rounded-full bg-blue-100 animate-ping opacity-75"></div>
-        <div className="absolute inset-4 rounded-full bg-blue-500"></div>
+   
+       <div className="relative w-24 h-24">
+        {/* Outer ring glow */}
+        <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-b-transparent border-l-[#FACC15] border-r-[#FDE047] animate-spin"></div>
+
+        {/* Soft pulsing glow */}
+        <div className="absolute inset-1.5 rounded-full bg-[#fde0473a] animate-ping opacity-70"></div>
+
+        {/* Inner core */}
+        <div className="absolute inset-4 rounded-full bg-[#FACC15] shadow-[0_0_20px_#FACC15]"></div>
       </div>
-    </div>
+    
+   
   );
 };
 
