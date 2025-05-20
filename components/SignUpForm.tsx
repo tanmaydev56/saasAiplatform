@@ -1,10 +1,8 @@
-
-
 "use client";
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
-
+import { toast } from "sonner";
 import Link from "next/link";
 
 export default function SignupForm() {
@@ -20,6 +18,7 @@ export default function SignupForm() {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -28,19 +27,22 @@ export default function SignupForm() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-     options: {
-     emailRedirectTo: `${window.location.origin}/sign-in?confirmed=true`
-
-     }
+      options: {
+        emailRedirectTo: `${window.location.origin}/sign-in?confirmed=true`,
+      },
     });
     console.log(data, error);
 
     if (error) {
       setError(error.message);
+      toast.error(error.message);
+    } else {
+      toast.success("A confirmation email has been sent to your email address.");
     }
 
     setIsLoading(false);
   };
+
   return (
     <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
       <h2 className="text-2xl font-semibold text-center mb-6">Create Account</h2>
@@ -89,22 +91,16 @@ export default function SignupForm() {
         >
           {isLoading ? "Signing up..." : "Sign Up"}
         </button>
-             { isLoading &&  <p className="text-sm text-gray-500 text-center mt-4">
-        A confirmation link has been sent to your email. Please verify your account to sign in.
-        </p>}
-
 
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
 
       <Link
         href="/sign-in"
-        className="text-sm text-center mt-4  text-amber-500 hover:text-amber-600 flex w-full justify-center"
+        className="text-sm text-center mt-4 text-amber-500 hover:text-amber-600 flex w-full justify-center"
       >
         Already have an account? Sign In
       </Link>
-
-    
     </div>
   );
 }

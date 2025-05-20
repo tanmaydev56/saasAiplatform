@@ -94,7 +94,7 @@ useEffect(() => {
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
-       <Link className="text-sm text-amber-500  flex w-full justify-center mt-4" href="/sign-up">Don't have an account? Sign Up</Link>
+       <Link className="text-sm text-amber-500  flex w-full justify-center mt-4" href="/sign-up">Don&apos;t have an account? Sign Up</Link>
         <div className="my-4 flex items-center justify-center text-gray-400 text-sm">
           <span className="border-t w-1/5"></span>
           <span className="mx-2">OR</span>

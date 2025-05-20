@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import { toast } from "sonner";
 
 export default function ResetPasswordForm() {
   const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
      redirectTo: `${window.location.origin}/change-password?confirmedPassword=true`,
     });
-    if (error) setError(error.message);
+    if (error) toast.error(error.message);
     else {
       setSuccess(true);
       setEmail("");
@@ -38,8 +39,8 @@ export default function ResetPasswordForm() {
         >
           Send Reset Link
         </button>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        {success && <p className="text-green-600 text-sm">Check your email for the reset link.</p>}
+        {error && <p className="text-red-500 text-sm">{toast.error(error)}</p>}
+        {success && <p className="text-green-600 text-sm">{toast.success("Password reset link sent successfully!")}</p>}
       </form>
     </div>
   );
