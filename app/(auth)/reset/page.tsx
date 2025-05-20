@@ -1,10 +1,10 @@
-import LoginForm from '@/components/LoginPage'
+import ResetPasswordForm from '@/components/ResetPasswordForm'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <LoginForm/>
+      <ResetPasswordForm/>
     </div>
   )
 }

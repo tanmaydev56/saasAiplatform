@@ -1,10 +1,10 @@
-import LoginForm from '@/components/LoginPage'
+import ChangePasswordForm from '@/components/ChangePasswrord'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <LoginForm/>
+      <ChangePasswordForm/>
     </div>
   )
 }

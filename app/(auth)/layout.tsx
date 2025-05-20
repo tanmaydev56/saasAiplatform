@@ -1,4 +1,5 @@
-// app/auth/AuthLayout.tsx (or wherever you structure your layouts)
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -15,13 +16,13 @@ const geistMono = Geist_Mono({
 
 export default function AuthLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased min-h-screen flex items-center justify-center bg-gray-50">
-        <main className="w-full max-w-md p-6 bg-white rounded-xl shadow-lg">
+      <body  >
+        <main className=" w-full min-h-screen flex justify-center items-center bg-gradient-to-r from-yellow-200 to-amber-300">
           {children}
         </main>
       </body>
