@@ -1,6 +1,7 @@
 "use client"
 
 import { useAuth } from "@/lib/provider"
+import { supabase } from "@/lib/supabase/client";
 import { useState } from "react";
 
 export default function LoginForm() {
@@ -13,10 +14,20 @@ export default function LoginForm() {
     await signIn(email, password);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
+  const GoogleLogin = async() =>{
+    const {error} = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+    if(error){
+      console.log(error);
+    }
+    
+  }
+  return (<div className="flex flex-col items-center bg-amber-300">
+    <form onSubmit={handleSubmit} className="flex flex-col">
       <input
         type="email"
+        className="mb-2 border rounded-4xl"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -32,5 +43,6 @@ export default function LoginForm() {
       </button>
       {error && <p className="text-red-500">{error}</p>}
     </form>
+    </div>
   );
 }
