@@ -28,7 +28,7 @@ export default function SignupForm() {
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/sign-in?confirmed=true`,
+        emailRedirectTo: `https://saas-aiplatform-mshgc573q-tanmaydev56s-projects.vercel.app/sign-in?confirmed=true`,
       },
     });
     console.log(data, error);
