@@ -29,7 +29,7 @@ export async function middleware(req: NextRequest) {
 
   // If user is logged in and trying to access auth route
   if (session && authRoutes.includes(req.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL('/', req.url));
+    return NextResponse.redirect(new URL('/dasboard', req.url));
   }
 
   return res;
