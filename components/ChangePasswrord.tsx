@@ -2,13 +2,22 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 export default function ChangePasswordForm() {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+const confirmed = searchParams.get("confirmedPassword");
+
+useEffect(() => {
+  if (confirmed) {
+    toast.success("Password changed successfully!, Please log in.");
+  }
+}, [confirmed]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

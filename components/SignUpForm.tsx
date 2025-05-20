@@ -28,10 +28,10 @@ export default function SignupForm() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-       emailRedirectTo: `${window.location.origin}/sign-in`,
+     options: {
+     emailRedirectTo: `${window.location.origin}/sign-in?confirmed=true`
 
-      },
+     }
     });
     console.log(data, error);
 

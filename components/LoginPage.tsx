@@ -3,14 +3,25 @@
 
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner";
 
 export default function LoginForm() {
    const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+const router = useRouter();
+const searchParams = useSearchParams();
+const confirmed = searchParams.get("confirmed");
+
+useEffect(() => {
+  if (confirmed) {
+    toast.success("Email confirmed. Please log in.");
+  }
+}, [confirmed]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,10 +31,12 @@ export default function LoginForm() {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
-      options: {
-          redirectTo: `${window.location.origin}/`,
-      }
+      
     });
+    if(data.user){
+      toast.success("Logged in successfully");
+      router.push("/");
+    }
     console.log(data, error);
 
     if (error) setError(error.message);
