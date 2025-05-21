@@ -1,6 +1,8 @@
 "use client"
 
 
+
+import { insertUserToDB } from "@/lib/actions/db.actions";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -42,7 +44,7 @@ useEffect(() => {
 
   if (data.user) {
     toast.success("Logged in successfully");
-
+    await insertUserToDB();
     // 🔁 Wait for session to settle before redirecting
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -51,13 +53,18 @@ useEffect(() => {
 };
 
 
-  const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
+const handleGoogleLogin = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://saas-aiplatform-beta.vercel.app/dashboard",
+    },
+  });
 
-    if (error) console.error("Google sign-in error:", error.message);
-  };
+  if (error) console.error("Google sign-in error:", error.message);
+};
+
+
 
 
   return (
