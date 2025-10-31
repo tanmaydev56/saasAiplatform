@@ -1,7 +1,10 @@
 ```markdown
 # saasAiplatform
 
-A TypeScript-first SaaS AI Platform starter — opinionated project scaffold for building, training, and serving ML/AI features in a multi-tenant SaaS environment. This repository contains TypeScript services, web UI components, infrastructure examples, CI workflows, and developer tooling to accelerate building production-ready AI features.
+A TypeScript-first SaaS AI Platform starter —
+opinionated project scaffold for building, training, and serving ML/AI features in a multi-tenant SaaS environment.
+This repository contains TypeScript services, web UI components, infrastructure examples, CI workflows,
+ and developer tooling to accelerate building production-ready AI features.
 
 Table of contents
 - About
